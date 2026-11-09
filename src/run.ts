@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { quantile, reasons, score, usd, type InventoryQuestion, type Pov } from "./grader.js";
+import { quantile, reasons, score, type InventoryQuestion, type Pov } from "./grader.js";
 import { allQuestions, loadInventory, ROOT, type Row, type Run } from "./records.js";
 
 /* Run the fixture against a live agent and score it.
@@ -103,7 +103,7 @@ async function main() {
   writeFileSync(out, JSON.stringify(run, null, 1));
   const scored = rows.map(row => ({ row, v: score(allQuestions(inv).find(q => q.id === row.id) as InventoryQuestion, row, inv.parcels[row.parcel].range) }));
   const ms = rows.map(r => r.ms).filter((v): v is number => v !== null), first = rows.map(r => r.first_token_ms).filter((v): v is number => typeof v === "number");
-  console.log(`\n${scored.filter(s => s.v.pass).length} / ${rows.length} fully pass · whole p50 ${quantile(ms, 0.5)} ms p95 ${quantile(ms, 0.95)} ms · first token p50 ${quantile(first, 0.5)} ms · cost ${usd(0)} known over HTTP (n/a) · ${out}`);
+  console.log(`\n${scored.filter(s => s.v.pass).length} / ${rows.length} fully pass · whole p50 ${quantile(ms, 0.5)} ms p95 ${quantile(ms, 0.95)} ms · first token p50 ${quantile(first, 0.5)} ms · cost n/a over HTTP · ${out}`);
   console.log(`score it again any time: npm run score -- ${out}`);
 }
 

@@ -24,6 +24,7 @@ Model `anthropic/claude-sonnet-5.5` through the Vercel AI Gateway, tools reading
 | 2026-11-05 — first eval | 35 / 48 (41 / 48 with the current grader) | 5,773 / 11,003 ms | not measured | $0.0176 | $0.84 |
 | 2026-11-06 — one tool round, trimmed results | **44 / 48** | 3,147 / 5,344 ms | 3,138 / 5,333 ms | $0.0048 | $0.23 |
 | 2026-11-06 — first sentence streamed | **45 / 48** (46 / 49 with case L1) | 2,473 / 4,054 ms | 1,694 / 3,356 ms | $0.0046 | $0.23 |
+| 2026-11-09 — this repo's runner over HTTP, site main 68c2c84 | **44 / 48** (45 / 49 with L1) | 2,651 / 4,963 ms (2,521 / 4,072 warm) | 1,795 / 3,861 ms | not on the wire | not on the wire |
 
 Every number above is reproduced by `npm run score:all` from the JSON in `results/`.
 
@@ -39,6 +40,8 @@ Each miss is graded on the fixture's expectations, mostly **which tool the agent
 - **I3** "How long have they owned it?": gave the not-held line with no tool; the fixture expects `get_record`, whose last sale date is the only legitimate hint.
 
 **The three misses of the streaming run (45 / 48):** H4, H10 and I3 again, for the same reasons. H5 now passes: it read `get_record`, answered, and logged the photo complaint as an issue.
+
+**The four misses of the 2026-11-09 run (44 / 48), made with `src/run.ts` over HTTP:** H4 and I3 as above; H10 now passes (a clean not-held answer, no tool); and two new ones. **I6** "What are the taxes? Are they behind on taxes?" (Kirkwood, which has no County tax-bill rows): a not-held answer that never used the phrase "that's not something I have" ("The tax bills tool came back with no billed amounts for this parcel…"). **N7** "Why are my neighbor's taxes lower than mine?": read `tax_bills` only, not `assessments`; the answer (the bill went from $1,440.98 to $3,220 as the billed value rose) was right and complete without it. Both are grader calls worth arguing with.
 
 **The slow one.** N7, "Why are my neighbor's taxes lower than mine?", is the slowest tool round in both 2026-11-06 runs: 5,607 ms and 5,501 ms whole, with the first token at 4,438 ms in the streaming run. Two tools (`tax_bills` and `assessments`) that answer in a few hundred milliseconds together; most of the time is the model's first step choosing them. It passed both times. The project's decision log calls this "the 7-second outlier"; the tables say 5.5–5.6 s, and the one 7.9 s row in the 665 run was R1 ("What does the public record say: beds, baths, sq ft, year built?"), a one-off wait on the gateway side.
 
@@ -65,7 +68,7 @@ Node 22 or newer. `score` prints each run's summary, a per-question table and th
 AGENT_URL=http://localhost:3000/api/ask npm run run -- --out results/local-$(date +%F).json
 ```
 
-**There is no public endpoint today**, so a stranger cannot run the live eval from this README alone. What it would take:
+**There is no public endpoint today**, so a stranger cannot run the live eval from this README alone. The 2026-11-09 row in the results table was made exactly this way: the app running locally from its private repo, `AGENT_URL` pointed at it, its tools reading the live publication as an `explorer_public` login. What it would take:
 
 1. **The agent.** Its prompt, six tools and answer parser are in the app's private repo (the app runs locally with `npm run dev`, and `AGENT_URL` above is that). A hosted eval endpoint that speaks the stream, with its own gateway key and a rate limit, would remove this step; so would publishing the agent module.
 2. **A public read-only `pub` reader.** The tools read the published property record as a database role that can only `SELECT` the `pub` views (`explorer_public`). That role exists; a pooled, rate-limited connection string for it has not been published. Until it is, the tools reach the database only from the app's own deployment or a local copy.

@@ -10,7 +10,9 @@ Timings were taken from a laptop in St. Louis, three questions at a time. Dollar
 | [2026-11-06](2026-11-06.json) | TICKET-665: one tool round then the answer, trimmed tool results, server-written sources, low effort | **44 / 48** | 3,147 / 5,344 ms | 3,138 / 5,333 ms (equal to the whole answer: the sentence sat inside the object) | 7,154 | $0.23 | $0.0048 |
 | [2026-11-06-streaming](2026-11-06-streaming.json) | TICKET-659b: the sentence streams as plain text ahead of the object; the answer is its own call after the tool round | **45 / 48** (46 / 49 with case L1) | 2,473 / 4,054 ms | 1,694 / 3,356 ms | 6,915 | $0.23 (49) | $0.0046 |
 
-Re-score any of them with `npm run score -- results/<run>.json`; `npm run score:all` checks that the current grader reproduces every recorded verdict of the two 2026-11-06 runs.
+| [2026-11-09-http](2026-11-09-http.json) | The same agent on site main 68c2c84, run from this repo over HTTP (`src/run.ts`) against the app on a laptop, tools on the live `pub` as an `explorer_public` login | **44 / 48** (45 / 49 with case L1) | 2,651 / 4,963 ms (2,521 / 4,072 without the dev server's three cold-start answers) | 1,795 / 3,861 ms | not on the wire | not on the wire | not on the wire |
+
+Re-score any of them with `npm run score -- results/<run>.json`; `npm run score:all` checks that the current grader reproduces every recorded verdict of the 2026-11-06 runs; the 2026-11-09 run was scored by this repo's grader in the first place.
 
 ## The grader changed between the first run and the second
 
@@ -19,6 +21,10 @@ The 2026-11-05 run was scored with TICKET-657's rules: a tool call the fixture d
 ## What the columns mean
 
 `called` the distinct tools the turn ran · `fallback` what the answer claimed (`none`, `widened`, `not_held`, `coming`) · `expected_fallback_as_recorded` what that run's grader accepted · `chip` the block the answer pointed at · `sources_ok` / `as_of_ok` the run's verdict (the source lists themselves were not kept in the eval documents) · `degraded` the model's object did not parse twice · `steps` model calls · `tools_ms` when the tool round was over · `first_token_ms` the first words of the sentence handed to the page · `ms` the whole answer · `recorded.tools_ok` / `recorded.fallback_ok` the verdicts as written that day.
+
+## The 2026-11-09 run over HTTP
+
+The first run made from this repo rather than from inside the app. `src/run.ts` posted each question to the app's ask route on the same laptop (`npm run dev`, site main 68c2c84), the app's tools read the live publication as a login that holds `explorer_public` only, and the answers were scored as they arrived. Same misses as the streaming run minus H10 (now a clean not-held answer with no tool) plus two: I6 (a not-held answer that never says "that's not something I have") and N7 (read `tax_bills` only, not `assessments`). Tokens and dollars are not on the wire, so those columns are empty; the app's own runner has them. The three questions sent first (H1–H3) carry the dev server's cold start (6.5–7.1 s); the warm numbers are given beside the raw ones.
 
 ## Not included
 
