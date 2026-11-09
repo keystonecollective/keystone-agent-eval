@@ -1,0 +1,834 @@
+{
+  "_about": "The Arc 1 question inventory as an eval fixture (TICKET-650 inventory, TICKET-657; grader rules TICKET-665). 48 questions as people say them, each with the pub data family it belongs to (inventory section 1; \"none\" = not held), the tool(s) expected, and the fallback(s) accepted. `tools` is the inventory's own answer; `alt_tools` lists other sets that answer the same question. A question passes on tools when every tool of one accepted set was called: calling one more is not a failure. A question whose set is empty must call none, unless an `alt_tools` set says which are fine. Fallback \"range\" is per parcel, from the record: \"widened\" when get_range for that parcel went out to a mile or has no range (a four-family, vacant land, too few sales), else \"none\"; an answer that called get_range on such a parcel may say \"widened\" whatever the question. `parcels.<key>.range` states what each parcel's range is expected to be (ok, widened, class_mismatch, class_unknown, too_few_sales); the live record decides, and the eval prints any difference. `parcel` is the property on screen when the question is asked. `cases` are questions outside the 48, added by later tickets and scored the same way, plus `chip` (the block the answer's chip must point at) and `never` (patterns the sentence must not match). L1 (TICKET-660, decision 112): asked from Homeowner, where the lock is not on screen; the answer is the not-held line with a chip to the lock, no tool, and no claim to know or be able to find who owns it. Synthetic text; public addresses only. `parcels.<key>.address` is the parcel's public site address, what the page shows as the subject when a question is asked (added for this public harness; the app looks it up in its directory).",
+  "parcels": {
+    "tholozan": {
+      "id": "stl-41169225000",
+      "address": "4251 Tholozan Ave",
+      "note": "City, 4251 Tholozan Ave: a four-family, so the single-family range does not apply",
+      "range": "class_mismatch"
+    },
+    "miami": {
+      "id": "stl-41259140000",
+      "address": "4273 Miami St",
+      "note": "City, 4273 Miami St: a single-family home with a standard range",
+      "range": "ok"
+    },
+    "lasalle": {
+      "id": "stl-03909115000",
+      "address": "1401 S 10th St",
+      "note": "City, LaSalle Park: fewer than five sales within half a mile, so the range goes out to a mile",
+      "range": "widened"
+    },
+    "kirkwood": {
+      "id": "stlco-24N611355",
+      "address": "452 Magnolia Ave",
+      "note": "County, 452 Magnolia Ave, Kirkwood: typed vacant land in the County land-use crosswalk, so no single-family range (645 follow-up); no County tax-bill rows (636)",
+      "range": "class_mismatch"
+    }
+  },
+  "questions": [
+    {
+      "id": "H1",
+      "pov": "homeowner",
+      "question": "What's my house worth?",
+      "family": [
+        "C"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "fallback": [
+        "range"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "H2",
+      "pov": "homeowner",
+      "question": "Why is that number so low?",
+      "family": [
+        "C"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "fallback": [
+        "range"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "H3",
+      "pov": "homeowner",
+      "question": "What sold near me lately?",
+      "family": [
+        "G"
+      ],
+      "tools": [
+        "sales_by_area"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "H4",
+      "pov": "homeowner",
+      "question": "How does mine compare to the one that sold down the street?",
+      "family": [
+        "C",
+        "B"
+      ],
+      "tools": [
+        "get_range",
+        "get_record"
+      ],
+      "fallback": [
+        "range"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "H5",
+      "pov": "homeowner",
+      "question": "Is that my house? That's pointing at my neighbor.",
+      "family": [
+        "A"
+      ],
+      "tools": [
+        "resolve_address"
+      ],
+      "alt_tools": [
+        [
+          "get_record"
+        ]
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "H6",
+      "pov": "homeowner",
+      "question": "What are my taxes? Did they go up?",
+      "family": [
+        "E"
+      ],
+      "tools": [
+        "tax_bills"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "H7",
+      "pov": "homeowner",
+      "question": "What does the assessor say it's worth? Why is that different from your number?",
+      "family": [
+        "F",
+        "C"
+      ],
+      "tools": [
+        "assessments",
+        "get_range"
+      ],
+      "fallback": [
+        "range"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "H8",
+      "pov": "homeowner",
+      "question": "Should I sell now?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "alt_tools": [
+        [
+          "get_range"
+        ],
+        [
+          "sales_by_area"
+        ],
+        [
+          "get_range",
+          "sales_by_area"
+        ]
+      ],
+      "fallback": [
+        "none",
+        "widened"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "H9",
+      "pov": "homeowner",
+      "question": "What should I fix before I sell? What would a rehab cost?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "coming"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "H10",
+      "pov": "homeowner",
+      "question": "Who'd buy a house like mine?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "I1",
+      "pov": "investor",
+      "question": "What's the range on this one? What's the $/sq ft?",
+      "family": [
+        "C"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "fallback": [
+        "range"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "I2",
+      "pov": "investor",
+      "question": "When did it last sell and for how much?",
+      "family": [
+        "D"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "I3",
+      "pov": "investor",
+      "question": "How long have they owned it?",
+      "family": [
+        "D"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "I4",
+      "pov": "investor",
+      "question": "Who owns it? Is it absentee or owner-occupied?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "I5",
+      "pov": "investor",
+      "question": "Is it vacant, in probate or pre-foreclosure?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "I6",
+      "pov": "investor",
+      "question": "What are the taxes? Are they behind on taxes?",
+      "family": [
+        "E"
+      ],
+      "tools": [
+        "tax_bills"
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "I7",
+      "pov": "investor",
+      "question": "Is it a single family or a 2-family or 4-family?",
+      "family": [
+        "B"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "I8",
+      "pov": "investor",
+      "question": "Was it rehabbed? Any permits pulled?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "I9",
+      "pov": "investor",
+      "question": "Who's buying in this area? Do you have buyers?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "I10",
+      "pov": "investor",
+      "question": "What did the flips on this street go for?",
+      "family": [
+        "G"
+      ],
+      "tools": [
+        "sales_by_area"
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "R1",
+      "pov": "realtor",
+      "question": "What does the public record say: beds, baths, sq ft, year built?",
+      "family": [
+        "B"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "R2",
+      "pov": "realtor",
+      "question": "Assessed vs appraised: what's on file?",
+      "family": [
+        "F"
+      ],
+      "tools": [
+        "assessments"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "R3",
+      "pov": "realtor",
+      "question": "What sold on Pardee Lane this year?",
+      "family": [
+        "G"
+      ],
+      "tools": [
+        "sales_by_area"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "R4",
+      "pov": "realtor",
+      "question": "How many sales in this neighborhood in the last 12 months?",
+      "family": [
+        "G"
+      ],
+      "tools": [
+        "sales_by_area"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "R5",
+      "pov": "realtor",
+      "question": "What's the median sale price around here?",
+      "family": [
+        "G"
+      ],
+      "tools": [
+        "sales_by_area"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "R6",
+      "pov": "realtor",
+      "question": "Is this tax bill in line with the neighbors'?",
+      "family": [
+        "E",
+        "G"
+      ],
+      "tools": [
+        "tax_bills",
+        "sales_by_area"
+      ],
+      "alt_tools": [
+        [
+          "tax_bills"
+        ],
+        [
+          "tax_bills",
+          "get_range"
+        ]
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "R7",
+      "pov": "realtor",
+      "question": "What school district is it in?",
+      "family": [
+        "B"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "R8",
+      "pov": "realtor",
+      "question": "Did it just sell? There's a sign in the yard.",
+      "family": [
+        "D"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "R9",
+      "pov": "realtor",
+      "question": "Is it listed? Days on market? Listing history?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "R10",
+      "pov": "realtor",
+      "question": "Can I get a report or a CMA to hand my seller?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "coming"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "B1",
+      "pov": null,
+      "question": "Is the asking price fair? What should I offer?",
+      "family": [
+        "C"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "fallback": [
+        "range"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "B2",
+      "pov": null,
+      "question": "What did the seller pay for it?",
+      "family": [
+        "D"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "B3",
+      "pov": null,
+      "question": "What will the taxes be?",
+      "family": [
+        "E"
+      ],
+      "tools": [
+        "tax_bills"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "B4",
+      "pov": null,
+      "question": "How old is it? How big? Basement? Garage?",
+      "family": [
+        "B"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "B5",
+      "pov": null,
+      "question": "What else sold nearby for less?",
+      "family": [
+        "C",
+        "G"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "alt_tools": [
+        [
+          "sales_by_area"
+        ],
+        [
+          "get_range",
+          "sales_by_area"
+        ]
+      ],
+      "fallback": [
+        "range",
+        "none"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "B6",
+      "pov": null,
+      "question": "Is it in the City or the County?",
+      "family": [
+        "A"
+      ],
+      "tools": [
+        "resolve_address"
+      ],
+      "alt_tools": [
+        [
+          "get_record"
+        ]
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "B7",
+      "pov": null,
+      "question": "Is there an occupancy or inspection certificate on file?",
+      "family": [
+        "B"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "B8",
+      "pov": null,
+      "question": "Is it legal as a two-family? Can I rent it?",
+      "family": [
+        "B"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "B9",
+      "pov": null,
+      "question": "Flood zone? Crime? School ratings?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "N1",
+      "pov": null,
+      "question": "What's around me?",
+      "family": [
+        "A",
+        "G"
+      ],
+      "tools": [
+        "resolve_address",
+        "sales_by_area"
+      ],
+      "alt_tools": [
+        [
+          "sales_by_area"
+        ]
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "N2",
+      "pov": null,
+      "question": "What did the house next door sell for?",
+      "family": [
+        "D",
+        "G"
+      ],
+      "tools": [
+        "sales_by_area"
+      ],
+      "alt_tools": [
+        [
+          "sales_by_area",
+          "resolve_address"
+        ],
+        [
+          "resolve_address",
+          "get_record"
+        ]
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "N3",
+      "pov": null,
+      "question": "Who lives there?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "N4",
+      "pov": null,
+      "question": "What's my street doing? Prices going up?",
+      "family": [
+        "G"
+      ],
+      "tools": [
+        "sales_by_area"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "N5",
+      "pov": null,
+      "question": "Which neighborhood is this?",
+      "family": [
+        "A"
+      ],
+      "tools": [
+        "resolve_address"
+      ],
+      "alt_tools": [
+        [
+          "get_record"
+        ]
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "kirkwood"
+    },
+    {
+      "id": "N6",
+      "pov": null,
+      "question": "How many houses sold around here this year?",
+      "family": [
+        "G"
+      ],
+      "tools": [
+        "sales_by_area"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "tholozan"
+    },
+    {
+      "id": "N7",
+      "pov": null,
+      "question": "Why are my neighbor's taxes lower than mine?",
+      "family": [
+        "E",
+        "F"
+      ],
+      "tools": [
+        "tax_bills",
+        "assessments"
+      ],
+      "fallback": [
+        "none",
+        "not_held"
+      ],
+      "parcel": "miami"
+    },
+    {
+      "id": "N8",
+      "pov": null,
+      "question": "Did anyone famous live here?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "lasalle"
+    },
+    {
+      "id": "N9",
+      "pov": null,
+      "question": "What is that building, a 4-family?",
+      "family": [
+        "B"
+      ],
+      "tools": [
+        "get_record"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "kirkwood"
+    }
+  ],
+  "cases": [
+    {
+      "id": "L1",
+      "pov": "homeowner",
+      "question": "Who owns this?",
+      "family": [
+        "none"
+      ],
+      "tools": [],
+      "fallback": [
+        "not_held"
+      ],
+      "parcel": "miami",
+      "chip": "owner_lock",
+      "never": [
+        "\\bowned by\\b",
+        "\\bthe owner is\\b",
+        "\\bowner of record is\\b",
+        "\\bbelongs to\\b",
+        "\\bi (have|hold|can see|can find|can look up|can pull|found) (the |its |their )?owner",
+        "\\bskip[- ]trac\\w* (shows|says|found|turned up)"
+      ]
+    }
+  ]
+}

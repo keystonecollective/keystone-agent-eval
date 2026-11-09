@@ -1,0 +1,1299 @@
+{
+ "run": "2026-11-06-streaming",
+ "label": "TICKET-659b eval, sentence streamed ahead of the object (decisions 146, 147); 48 inventory questions plus case L1",
+ "model": "anthropic/claude-sonnet-5.5",
+ "gateway": "Vercel AI Gateway",
+ "publication": "2026-11-05.2",
+ "data_as_of": "2026-11-05",
+ "questions": 49,
+ "recorded": {
+  "pass": 46,
+  "of": 49,
+  "pass_inventory": 45,
+  "of_inventory": 48,
+  "tools_ok_pct": 94,
+  "sources_pct": 100,
+  "as_of_pct": 100,
+  "fallback_pct": 98,
+  "unparsed": 0,
+  "usd_total": 0.23,
+  "usd_source": "gateway",
+  "whole_p50_ms": 2473,
+  "whole_p95_ms": 4054,
+  "first_token_p50_ms": 1694,
+  "first_token_p95_ms": 3356,
+  "mean_tokens": 6915,
+  "mean_steps": 1.76,
+  "usd_per_answer": 0.0046
+ },
+ "grader_version": "TICKET-665 rules (current)",
+ "concurrency": 3,
+ "timed_from": "a laptop in St. Louis",
+ "source_doc": "stl-property-review-site docs/agent/eval-2026-11-06-streaming.md (private)",
+ "rows": [
+  {
+   "id": "H1",
+   "parcel": "tholozan",
+   "called": [
+    "get_range"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "widened",
+   "expected_fallback_as_recorded": [
+    "widened"
+   ],
+   "answer": "I can't give you a range for this one. It's a four-family, and the nearby sales on file are all single-family homes, so they wouldn't be a fair comparison. Having no range doesn't mean anything is wrong. Multi-family buildings just don't fit a single-family comparison.",
+   "chip": "range_banner",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1054.0,
+   "first_token_ms": 1836.0,
+   "ms": 2657.0,
+   "tokens": 7651,
+   "usd": 0.0121,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "H2",
+   "parcel": "miami",
+   "called": [
+    "get_range"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "The range is $253,000 to $311,000, with a middle of $283,000 (about $172/sq ft for your 1,648 sq ft). It comes from 12 sales within half a mile, and those sales are mixed. Several were smaller homes of 870 to 1,250 sq ft that sold for $165,000 to $212,500. One 1,512 sq ft home went for just $101,000. Those pull the numbers down, while the closest-sized homes sold for $265,000 to $293,000. This range comes from recorded sales and isn't an appraisal. It also can't see your home's condition or updates.",
+   "chip": "range_banner",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1119.0,
+   "first_token_ms": 1719.0,
+   "ms": 3516.0,
+   "tokens": 8344,
+   "usd": 0.0143,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "H3",
+   "parcel": "lasalle",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Within about half a mile, 23 sales were recorded from April 2025 to March 2026, with a median price of $213,774. The closest ones were 910 Rutger St at $298,900 (0.09 mi), 913 Morrison Ave at $570,000, and 1038 Julia St at $183,500. Several others were condo units, such as 1523 S 10th St #107 at $112,500, so prices vary a lot. I added the sales map below.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1908.0,
+   "first_token_ms": 2624.0,
+   "ms": 3755.0,
+   "tokens": 8249,
+   "usd": 0.0139,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "H4",
+   "parcel": "kirkwood",
+   "called": [
+    "get_record",
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "widened"
+   ],
+   "answer": "Nothing sold on your street in the last 12 months, so I don't have a sale down the street to compare against. Your parcel is also listed as Vacant/Agriculture, not a house, and its own newest sale is $125,000 on 2026-06-18, recorded as \"Additional parcels.\" That label usually means it was part of a multi-parcel transfer, so the price may not reflect this parcel alone.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1683.0,
+   "first_token_ms": 2377.0,
+   "ms": 3282.0,
+   "tokens": 7908,
+   "usd": 0.0055,
+   "recorded": {
+    "tools_ok": false,
+    "fallback_ok": false
+   }
+  },
+  {
+   "id": "H6",
+   "parcel": "miami",
+   "called": [
+    "tax_bills"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Yep, they went up a lot. The 2025 bill was $3,220, compared with $1,440.98 in 2024. The billed value also jumped, from $16,880 to $38,990, mostly on the improvement side. I added the tax bills below so you can see the full history.",
+   "chip": "tax_bills",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 884.0,
+   "first_token_ms": 1585.0,
+   "ms": 2328.0,
+   "tokens": 7910,
+   "usd": 0.0045,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "H5",
+   "parcel": "tholozan",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "The screen is set to 4251 Tholozan Ave in Tower Grove South (63116). The record lists it as a four-family building from 1961 with 3,328 sq ft. If that's not your address, tell me the one you want and I'll look it up. I can't see the photo itself, so I can't tell you whether it matches the house next door.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1166.0,
+   "first_token_ms": 1910.0,
+   "ms": 3027.0,
+   "tokens": 7895,
+   "usd": 0.0046,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "H9",
+   "parcel": "tholozan",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "coming",
+   "expected_fallback_as_recorded": [
+    "coming"
+   ],
+   "answer": "That's coming: a repair list and rehab cost estimate are part of the toolkit that isn't live yet. Whether to sell is your call, and I can pull the recorded range or the building details if that helps.",
+   "chip": null,
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 582.0,
+   "ms": 1190.0,
+   "tokens": 3746,
+   "usd": 0.0019,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "H8",
+   "parcel": "kirkwood",
+   "called": [
+    "get_range"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none",
+    "widened"
+   ],
+   "answer": "Whether to sell is your call. I can only give you the record. The range tool shows no range for this one, because the record lists it as a vacant lot and the nearby sales on file are all single-family homes. A lot isn't comparable to those, so there's no price range to point to.",
+   "chip": "range_banner",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 924.0,
+   "first_token_ms": 1624.0,
+   "ms": 2513.0,
+   "tokens": 7635,
+   "usd": 0.0039,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "H7",
+   "parcel": "lasalle",
+   "called": [
+    "get_range",
+    "assessments"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "widened",
+   "expected_fallback_as_recorded": [
+    "widened"
+   ],
+   "answer": "The Assessor has it at $75,090 total, with $7,640 in land and $67,450 in improvements. My range runs $385,000 to $734,000, with a mid of $570,000. That range is wide because fewer than five sales came from within half a mile, so I widened the search to a mile and got 11 sales. They run from $206,000 to $857,000. The two numbers measure different things: the assessment is a tax figure, and my range comes from recent sales. I can't tell you from the record why the two sit so far apart. I added the assessor view below.",
+   "chip": "assessor_view",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1363.0,
+   "first_token_ms": 2016.0,
+   "ms": 3399.0,
+   "tokens": 8488,
+   "usd": 0.0068,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "H10",
+   "parcel": "miami",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: who'd buy a house like yours isn't in the public record I read. Here's what is on file for 4273 Miami St: a 1894 single-family home in Tower Grove South with 1,648 sq ft and 1 full bath. It has no recorded sale in the last two years.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1032.0,
+   "first_token_ms": 1751.0,
+   "ms": 2439.0,
+   "tokens": 7741,
+   "usd": 0.0042,
+   "recorded": {
+    "tools_ok": false,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I3",
+   "parcel": "tholozan",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "That's not something I have: who owns the property and how long they've held it aren't in the public record I read. I can only see a recorded sale from the last two years, if there is one.",
+   "chip": "owner_lock",
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 622.0,
+   "ms": 1098.0,
+   "tokens": 3754,
+   "usd": 0.0018,
+   "recorded": {
+    "tools_ok": false,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I1",
+   "parcel": "lasalle",
+   "called": [
+    "get_range"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "widened",
+   "expected_fallback_as_recorded": [
+    "widened"
+   ],
+   "answer": "The range is $385,000 to $734,000, with a mid of $570,000. It's a wide spread because fewer than five sales were close, so the search went out to a mile and pulled in 11 sales. Those sales run from $206,000 to $857,000. The result didn't include a $/sq ft figure, so I can't give you one. The comps do vary a lot in size, from 864 to 3,100 sq ft.",
+   "chip": "range_banner",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 936.0,
+   "first_token_ms": 1664.0,
+   "ms": 2721.0,
+   "tokens": 8266,
+   "usd": 0.0055,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I2",
+   "parcel": "kirkwood",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "It last sold on 2026-06-18 for $125,000. The record tags that sale as \"Additional parcels,\" and the parcel is listed as Vacant/Agriculture, so it may have been part of a bigger deal.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1011.0,
+   "first_token_ms": 1627.0,
+   "ms": 2230.0,
+   "tokens": 7709,
+   "usd": 0.0039,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I4",
+   "parcel": "miami",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: who owns it, or whether it's absentee or owner-occupied, isn't in the public record I read.",
+   "chip": "owner_lock",
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 830.0,
+   "ms": 1079.0,
+   "tokens": 3750,
+   "usd": 0.0017,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I5",
+   "parcel": "lasalle",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: vacancy, probate and pre-foreclosure status aren't in the public record I read.",
+   "chip": null,
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 791.0,
+   "ms": 1072.0,
+   "tokens": 3743,
+   "usd": 0.0017,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I8",
+   "parcel": "miami",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: permits and rehab history aren't in the public record I read.",
+   "chip": null,
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 734.0,
+   "ms": 1010.0,
+   "tokens": 3729,
+   "usd": 0.0016,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I6",
+   "parcel": "kirkwood",
+   "called": [
+    "tax_bills"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "I don't have any billed tax amounts on file for this parcel, so there's no figure to give you. Whether taxes are paid or behind isn't in the record either. That's not something I have, since the record only shows what was billed.",
+   "chip": "tax_bills",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 909.0,
+   "first_token_ms": 1694.0,
+   "ms": 2333.0,
+   "tokens": 7591,
+   "usd": 0.0037,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I7",
+   "parcel": "tholozan",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "It's a four-family. The record lists it as a \"Four Family Unit,\" built in 1961, with 3,328 living sq ft in one building.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 919.0,
+   "first_token_ms": 1665.0,
+   "ms": 2044.0,
+   "tokens": 7883,
+   "usd": 0.0041,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I9",
+   "parcel": "lasalle",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: who's buying isn't in the public record I read, so I can't tell you who the buyers are.",
+   "chip": "buyers_sample",
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 906.0,
+   "ms": 1287.0,
+   "tokens": 3746,
+   "usd": 0.0017,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "I10",
+   "parcel": "kirkwood",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "I don't see any recorded sales on Magnolia Ave between July 2025 and June 2026, so there are no prices to share. The record also doesn't say which sales were flips, so I can't pick those out anyway. I added the sales map below.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1059.0,
+   "first_token_ms": 1785.0,
+   "ms": 2473.0,
+   "tokens": 7664,
+   "usd": 0.0041,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R1",
+   "parcel": "tholozan",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "It's a Four Family Unit built in 1961 with 3,328 sq ft of living space, and the record shows 1 full bath and no half baths. The record doesn't list a bed count. The property card is already on screen.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1008.0,
+   "first_token_ms": 1661.0,
+   "ms": 2370.0,
+   "tokens": 7899,
+   "usd": 0.0043,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R2",
+   "parcel": "miami",
+   "called": [
+    "assessments"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "On file for 4273 Miami St, the Assessor shows assessed land of $1,600 and assessed improvement of $37,390, for an assessed total of $38,990. Appraised land and cost-appraised improvement both show $0, so there's no separate appraised figure on record to compare against.",
+   "chip": "assessor_view",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1046.0,
+   "first_token_ms": 1750.0,
+   "ms": 2456.0,
+   "tokens": 7703,
+   "usd": 0.0041,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R3",
+   "parcel": "lasalle",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Nothing on Pardee Ln shows up in the recorded sales for the last 12 months. The window runs April 2025 through June 2026, so either nothing sold there or nothing was recorded in that stretch. I put the sales map on screen.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1236.0,
+   "first_token_ms": 1979.0,
+   "ms": 2643.0,
+   "tokens": 7661,
+   "usd": 0.0042,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R5",
+   "parcel": "tholozan",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Within half a mile of 4251 Tholozan, the median sale price is $217,824 across 76 recorded sales. Those sales ran from April 2025 to March 2026. The sales map on screen shows the nearest ones.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1812.0,
+   "first_token_ms": 2482.0,
+   "ms": 3158.0,
+   "tokens": 8187,
+   "usd": 0.0051,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R4",
+   "parcel": "kirkwood",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Within half a mile of this house, there were 52 recorded sales from July 2025 through June 2026, with a median price of $369,500. This is a County parcel, so I used a radius around it rather than the neighborhood boundary.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 2694.0,
+   "first_token_ms": 3356.0,
+   "ms": 4054.0,
+   "tokens": 8307,
+   "usd": 0.006,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R6",
+   "parcel": "miami",
+   "called": [
+    "tax_bills"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "Your 2025 bill is $3,220, up from $1,441 in 2024. The billed value jumped from $16,880 to $38,990 over the same period. I only have this parcel's own bills, so I can't compare it to the neighbors' bills. I can't tell you whether that jump is in line with them.",
+   "chip": "tax_bills",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1923.0,
+   "first_token_ms": 2558.0,
+   "ms": 3254.0,
+   "tokens": 8097,
+   "usd": 0.006,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R7",
+   "parcel": "lasalle",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "It's in St. Louis Public Schools, and the record lists it as a City parcel in LaSalle Park. That's just the district on file, so I don't have school ratings.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1151.0,
+   "first_token_ms": 1834.0,
+   "ms": 2324.0,
+   "tokens": 7705,
+   "usd": 0.0038,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R8",
+   "parcel": "kirkwood",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "Yes, there's a recorded sale on this parcel. It sold on 2026-06-18 for $125,000, and the record tags it as \"Additional parcels.\" The record lists it as Vacant/Agriculture, not a house. I can't see what the sign in the yard says, and listing status isn't something I have.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 916.0,
+   "first_token_ms": 1593.0,
+   "ms": 2370.0,
+   "tokens": 7735,
+   "usd": 0.0042,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R9",
+   "parcel": "tholozan",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: whether it's listed, how long it's been on the market, and its listing history aren't in the public record I read. I can pull up the recorded sales around it if that helps.",
+   "chip": null,
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 656.0,
+   "ms": 1249.0,
+   "tokens": 3757,
+   "usd": 0.0019,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "R10",
+   "parcel": "miami",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "coming",
+   "expected_fallback_as_recorded": [
+    "coming"
+   ],
+   "answer": "That's coming. A report or CMA isn't something I can put together yet.",
+   "chip": null,
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 638.0,
+   "ms": 962.0,
+   "tokens": 3720,
+   "usd": 0.0015,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B3",
+   "parcel": "tholozan",
+   "called": [
+    "tax_bills"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "I can't tell you what the taxes will be, because I only have past bills. The latest one, for 2025, was $4,753.35 on a billed value of $57,720, up from $3,955.58 in 2024. I added the tax bills below.",
+   "chip": "tax_bills",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 886.0,
+   "first_token_ms": 1605.0,
+   "ms": 2333.0,
+   "tokens": 7898,
+   "usd": 0.0044,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B1",
+   "parcel": "lasalle",
+   "called": [
+    "get_range"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "widened",
+   "expected_fallback_as_recorded": [
+    "widened"
+   ],
+   "answer": "I don't have an asking price for this one, so I can't say if it's fair. What you offer is your call. The recorded sales put the range at $385,000 to $734,000, with a mid of $570,000. It's a wide range because fewer than five sales were close, so the search went out to a mile, and those 11 sales run from $206,000 to $857,000.",
+   "chip": "range_banner",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1095.0,
+   "first_token_ms": 1819.0,
+   "ms": 2840.0,
+   "tokens": 8185,
+   "usd": 0.0052,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B2",
+   "parcel": "kirkwood",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "The newest recorded sale on this parcel is $125,000 on 2026-06-18. It's labeled \"Additional parcels,\" so it may have covered more than one parcel, and the price may not be just for this one. The parcel type is Vacant/Agriculture, not a house. I added the property card below so you can see the details.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 874.0,
+   "first_token_ms": 1666.0,
+   "ms": 2538.0,
+   "tokens": 7687,
+   "usd": 0.0042,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B6",
+   "parcel": "kirkwood",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "It's in the County. The record puts 452 Magnolia Ave in the Kirkwood neighborhood and school district. It's listed as a Vacant/Agriculture parcel, not a house. I added the property card below so you can see it.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 929.0,
+   "first_token_ms": 1534.0,
+   "ms": 2290.0,
+   "tokens": 7663,
+   "usd": 0.0039,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B4",
+   "parcel": "miami",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "It was built in 1894 and has 1,648 sq ft of living space. The building line lists 1,568, so those two numbers don't match. The record doesn't say anything about a basement or a garage, so I can't tell you either way. I added the property card below so you can see what's on file.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1089.0,
+   "first_token_ms": 1849.0,
+   "ms": 2743.0,
+   "tokens": 7740,
+   "usd": 0.0042,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B5",
+   "parcel": "lasalle",
+   "called": [
+    "get_range"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "widened",
+   "expected_fallback_as_recorded": [
+    "widened",
+    "none"
+   ],
+   "answer": "Yes, several sold for less, and the range is widened. Fewer than five comparable sales fell within half a mile, so the search went out to a mile. The lower ones were $206,000 (864 sq ft, 0.5 mi), $235,000 (1,402 sq ft, 0.54 mi), $345,000 (1,696 sq ft, 0.54 mi), $425,000 (2,820 sq ft, 0.55 mi) and $476,000 (2,757 sq ft, 0.7 mi). The range overall is $385,000 to $734,000, with a mid of $570,000. I added the sales map below so you can see where they are.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1047.0,
+   "first_token_ms": 1668.0,
+   "ms": 3103.0,
+   "tokens": 8278,
+   "usd": 0.0062,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B9",
+   "parcel": "lasalle",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: flood zone, crime and school ratings aren't in the public record I read.",
+   "chip": null,
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 784.0,
+   "ms": 974.0,
+   "tokens": 3706,
+   "usd": 0.0015,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B7",
+   "parcel": "tholozan",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Yes, the City has certificates on file for this four-family. The newest are unit C on 2025-05-08, and units D, B and A on 2025-04-25. There's also an older one for unit B from 2018-08-21, and 13 in total. The record doesn't say what type each certificate is, so I can't tell you if it's occupancy or inspection. I added the property card below so you can see them.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 955.0,
+   "first_token_ms": 1696.0,
+   "ms": 2754.0,
+   "tokens": 7911,
+   "usd": 0.0048,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N1",
+   "parcel": "kirkwood",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Within a half mile of you, 52 homes sold from July 2025 to June 2026, and the median price was $369,500. The closest ones are small, though. 435 Heman Dr went for $197,000, 443 Erber Dr for $250,000, and several Nirk Ave units sold between $165,000 and $191,625. I added the sales map below so you can see where they are.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1696.0,
+   "first_token_ms": 2329.0,
+   "ms": 3317.0,
+   "tokens": 8208,
+   "usd": 0.0056,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N2",
+   "parcel": "tholozan",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "I can't tell which house is next door, because the street list only gives distances. The closest other sale on Tholozan is 4313 Tholozan Ave, which sold for $165,000 on 2025-12-16, about 0.1 mile away. This house, 4251, sold for $420,000 on 2025-06-12. I added the sales map below so you can check which one is next door.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1163.0,
+   "first_token_ms": 1856.0,
+   "ms": 2872.0,
+   "tokens": 8211,
+   "usd": 0.0056,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N3",
+   "parcel": "miami",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: who owns it or lives there isn't in the public record I read.",
+   "chip": "owner_lock",
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 681.0,
+   "ms": 978.0,
+   "tokens": 3692,
+   "usd": 0.0015,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "B8",
+   "parcel": "miami",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "That's not something I have: whether it's legal as a two-family, or whether you can rent it, isn't in the record I read. The City record lists it as Single Family Units, built in 1894 with 1,568 sq ft in one building. It also shows two City certificates on file, but it doesn't say what they cover. I added the property card below.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 2691.0,
+   "first_token_ms": 5085.0,
+   "ms": 5906.0,
+   "tokens": 8173,
+   "usd": 0.0085,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N5",
+   "parcel": "kirkwood",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "It's in Kirkwood (zip 63122), in St. Louis County, and it's in the Kirkwood school district. The record also lists it as Vacant/Agriculture, not a house. I added the property card below so you can see the details.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 840.0,
+   "first_token_ms": 1478.0,
+   "ms": 2081.0,
+   "tokens": 7661,
+   "usd": 0.0039,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N4",
+   "parcel": "lasalle",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Not enough here to call a trend. Over the last 24 months, 7 sales on S 10th St have a median of $278,000, but they're a mixed bunch: condo units at 1523 and 1859 went for $112,500 to $136,000, and houses farther south went for $420,000 to $620,000. I added the sales map below so you can see where they sit.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1277.0,
+   "first_token_ms": 1980.0,
+   "ms": 3169.0,
+   "tokens": 8062,
+   "usd": 0.0054,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N6",
+   "parcel": "tholozan",
+   "called": [
+    "sales_by_area"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Within half a mile, 76 houses sold between April 2025 and March 2026, and the median price was about $217,824. That window is the last 12 months of recorded sales, so it isn't strictly \"this calendar year.\" The sales map below shows them.",
+   "chip": "sales_map",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1848.0,
+   "first_token_ms": 2841.0,
+   "ms": 3600.0,
+   "tokens": 8159,
+   "usd": 0.0051,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N8",
+   "parcel": "lasalle",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: famous residents aren't in the public record I read.",
+   "chip": null,
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 801.0,
+   "ms": 1037.0,
+   "tokens": 3693,
+   "usd": 0.0015,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "L1",
+   "parcel": "miami",
+   "called": [],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "not_held",
+   "expected_fallback_as_recorded": [
+    "not_held"
+   ],
+   "answer": "That's not something I have: who owns it isn't in the public record I read.",
+   "chip": "owner_lock",
+   "degraded": false,
+   "steps": 1,
+   "tools_ms": null,
+   "first_token_ms": 883.0,
+   "ms": 1145.0,
+   "tokens": 3698,
+   "usd": 0.0015,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N9",
+   "parcel": "kirkwood",
+   "called": [
+    "get_record"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none"
+   ],
+   "answer": "Not a 4-family. The record lists 452 Magnolia Ave as Vacant/Agriculture in Kirkwood (County), with no building details like beds, baths, or year built on file. It shows a $125,000 sale on 2026-06-18, marked \"Additional parcels,\" so it may have sold along with other parcels. I added the property card below.",
+   "chip": "property_card",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 1116.0,
+   "first_token_ms": 1813.0,
+   "ms": 2730.0,
+   "tokens": 7701,
+   "usd": 0.0043,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  },
+  {
+   "id": "N7",
+   "parcel": "miami",
+   "called": [
+    "tax_bills",
+    "assessments"
+   ],
+   "sources_ok": true,
+   "as_of_ok": true,
+   "fallback": "none",
+   "expected_fallback_as_recorded": [
+    "none",
+    "not_held"
+   ],
+   "answer": "I can only see your parcel, not your neighbor's, so I can't compare the two. Your 2025 bill is $3,220 on a billed value of $38,990 (land $1,600, improvements $37,390). In 2024 it was $1,440.98 on $16,880, so the improvement value jumped from $15,280 to $37,390. If you give me your neighbor's address, I can pull their record.",
+   "chip": "tax_bills",
+   "degraded": false,
+   "steps": 2,
+   "tools_ms": 3633.0,
+   "first_token_ms": 4438.0,
+   "ms": 5501.0,
+   "tokens": 8349,
+   "usd": 0.0075,
+   "recorded": {
+    "tools_ok": true,
+    "fallback_ok": true
+   }
+  }
+ ]
+}

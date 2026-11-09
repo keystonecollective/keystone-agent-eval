@@ -1,0 +1,5 @@
+node_modules/
+.env
+.env.*
+results/local-*.json
+results/local-*.md

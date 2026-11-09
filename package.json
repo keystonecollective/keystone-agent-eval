@@ -1,0 +1,21 @@
+{
+  "name": "keystone-agent-eval",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Keystone property agent's eval: 48 questions people actually ask about a house, a grader, the recorded runs, and what the agent gets wrong.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "score": "tsx src/score.ts",
+    "score:all": "tsx src/score.ts --check results/2026-11-05.json results/2026-11-06.json results/2026-11-06-streaming.json",
+    "run": "tsx src/run.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.3"
+  }
+}
