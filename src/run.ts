@@ -17,6 +17,8 @@ import { allQuestions, loadInventory, ROOT, type Row, type Run } from "./records
 
      AGENT_URL=http://localhost:3000/api/ask npm run run -- --out results/local-<date>.json
 
+   Each question is sent under a fresh device id, because the app allows a
+   device 20 questions a minute and the fixture asks 49 in about two.
    Flags: --only H1,I4 · --no-cases (the 48 only) · --concurrency 3 ·
    --model <label> (for the record; the model is the endpoint's) · --out.
    The endpoint does not report tokens or cost: those columns stay empty
@@ -69,7 +71,8 @@ async function main() {
   const inv = loadInventory();
   const only = flag("only")?.split(",").filter(Boolean);
   const queue = (process.argv.includes("--no-cases") ? inv.questions : allQuestions(inv)).filter(q => !only?.length || only.includes(q.id));
-  const device = `eval-${randomUUID().replace(/-/g, "").slice(0, 24)}`;
+  /* A fresh device id per question: the app counts 20 questions a minute per device, and the fixture asks 49 in about two. */
+  const device = () => `eval-${randomUUID().replace(/-/g, "").slice(0, 24)}`;
   const concurrency = Number(flag("concurrency") ?? 3);
   const today = new Date().toISOString().slice(0, 10);
   const out = flag("out") ?? join(ROOT, "results", `local-${today}.json`);
@@ -79,7 +82,7 @@ async function main() {
       const q = queue.shift(); if (!q) return;
       const p = inv.parcels[q.parcel];
       if (!p.address) throw new Error(`fixture parcel ${q.parcel} has no address`);
-      const r = await askHttp(url, device, q, { address: p.address, parcelId: p.id });
+      const r = await askHttp(url, device(), q, { address: p.address, parcelId: p.id });
       const a = r.answer;
       const row: Row = {
         id: q.id, parcel: q.parcel, called: r.called,
