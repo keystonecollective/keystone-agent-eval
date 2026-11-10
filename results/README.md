@@ -11,6 +11,7 @@ Timings were taken from a laptop in St. Louis, three questions at a time. Dollar
 | [2026-11-06-streaming](2026-11-06-streaming.json) | TICKET-659b: the sentence streams as plain text ahead of the object; the answer is its own call after the tool round | **45 / 48** (46 / 49 with case L1) | 2,473 / 4,054 ms | 1,694 / 3,356 ms | 6,915 | $0.23 (49) | $0.0046 |
 
 | [2026-11-09-http](2026-11-09-http.json) | The same agent on site main 68c2c84, run from this repo over HTTP (`src/run.ts`) against the app on a laptop, tools on the live `pub` as an `explorer_public` login | **44 / 48** (45 / 49 with case L1) | 2,651 / 4,963 ms (2,521 / 4,072 without the dev server's three cold-start answers) | 1,795 / 3,861 ms | not on the wire | not on the wire | not on the wire |
+| [2026-11-10-http](2026-11-10-http.json) | TICKET-677: eight tools (`permits`, `flood_zone`) on the site branch for that ticket, the live publication `2026-11-10.1`; the fixture gained four cases (P1, P2, F1, F2) | **49 / 53**: the earlier 49 hold at 45 / 49 (misses H4, H7, I3, B8), the four new cases 4 / 4 | 2,642 / 4,216 ms | 1,869 ms p50 | not on the wire | not on the wire | not on the wire |
 
 Re-score any of them with `npm run score -- results/<run>.json`; `npm run score:all` checks that the current grader reproduces every recorded verdict of the 2026-11-06 runs; the 2026-11-09 run was scored by this repo's grader in the first place.
 

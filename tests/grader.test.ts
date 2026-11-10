@@ -7,9 +7,9 @@ import { loadInventory, loadRun, ROOT, scoreRun } from "../src/records.js";
 const inv = loadInventory();
 const misses = (file: string) => scoreRun(inv, loadRun(join(ROOT, "results", file))).filter(s => !s.v.pass).map(s => s.q.id);
 
-test("the fixture is the 48 inventory questions plus the added cases, on four public parcels", () => {
+test("the fixture is the 48 inventory questions plus the added cases, on five public parcels", () => {
   assert.equal(inv.questions.length, 48);
-  assert.deepEqual(Object.keys(inv.parcels).sort(), ["kirkwood", "lasalle", "miami", "tholozan"]);
+  assert.deepEqual(Object.keys(inv.parcels).sort(), ["kirkwood", "lasalle", "miami", "tesson", "tholozan"]);
   for (const q of [...inv.questions, ...(inv.cases ?? [])]) assert.ok(inv.parcels[q.parcel], `${q.id} names parcel ${q.parcel}`);
 });
 
@@ -48,6 +48,10 @@ test("2026-11-06 streaming (TICKET-659b): 46 / 49, misses H4 H10 I3; L1 passes",
 
 test("2026-11-09 over HTTP (this repo's runner): 45 / 49, misses H4 I3 I6 N7", () => {
   assert.deepEqual(misses("2026-11-09-http.json"), ["H4", "I3", "I6", "N7"]);
+});
+
+test("2026-11-10 over HTTP (TICKET-677, eight tools): 49 / 53, misses H4 H7 I3 B8; the four new cases pass", () => {
+  assert.deepEqual(misses("2026-11-10-http.json"), ["H4", "H7", "I3", "B8"]);
 });
 
 test("2026-11-05 (TICKET-657, older rules): recorded 35 / 48; the current grader passes 41 / 48 (results/README.md)", () => {
