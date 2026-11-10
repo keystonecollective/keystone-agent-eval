@@ -22,7 +22,7 @@
      patterns.
    - the model's object parsed (an answer that did not parse, twice, fails). */
 
-export const TOOL_NAMES = ["resolve_address", "get_record", "get_range", "tax_bills", "assessments", "sales_by_area"] as const;
+export const TOOL_NAMES = ["resolve_address", "get_record", "get_range", "tax_bills", "assessments", "sales_by_area", "permits", "flood_zone"] as const;
 export type ToolName = (typeof TOOL_NAMES)[number];
 
 export const FALLBACKS = ["none", "widened", "not_held", "coming"] as const;
@@ -32,7 +32,7 @@ export const POVS = ["homeowner", "investor", "realtor"] as const;
 export type Pov = (typeof POVS)[number];
 
 /** The app's block ids, as the fixture's `chip` names them. */
-export const BLOCK_IDS = ["photo_outline", "range_banner", "sales_map", "property_card", "tax_bills", "assessor_view", "owner_lock", "buyers_sample", "answer_card", "signals_row"] as const;
+export const BLOCK_IDS = ["photo_outline", "range_banner", "sales_map", "property_card", "tax_bills", "assessor_view", "owner_lock", "buyers_sample", "answer_card", "signals_row", "permits", "flood_zone"] as const;
 export type BlockId = (typeof BLOCK_IDS)[number];
 
 export type RangeCase = "ok" | "widened" | "class_mismatch" | "class_unknown" | "too_few_sales";
