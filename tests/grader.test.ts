@@ -66,6 +66,17 @@ test("2026-11-11 over HTTP after the agent fix (TICKET-682): 54 / 57, misses H4 
   assert.deepEqual(misses("2026-11-11-http-agent-fix.json"), ["H4", "I3", "I6"]);
 });
 
+test("2026-11-11 over HTTP on site main ec3c565 (686 and Phase 0): 54 / 57, misses H4 I3 S2", () => {
+  assert.deepEqual(misses("2026-11-11-http-686-phase0.json"), ["H4", "I3", "S2"]);
+});
+
+test("never: saying that neither number is an appraisal is not a claim of one (S1 to S4)", () => {
+  const s1 = inv.cases?.find(q => q.id === "S1");
+  assert.ok(s1?.never?.length);
+  for (const ok of ["They land close together, and neither one is an appraisal.", "Neither is an appraisal.", "Neither of them is an appraisal.", "It's a range from recorded sales, not an appraisal.", "It isn't an appraisal.", "It is not a listing price, nor an appraisal."]) assert.ok(neverOk(s1!, ok), ok);
+  for (const bad of ["The Keystone estimate is an appraisal of your home.", "Think of it as an appraisal.", "Either one is an appraisal."]) assert.ok(!neverOk(s1!, bad), bad);
+});
+
 test("2026-11-05 (TICKET-657, older rules): recorded 35 / 48; the current grader passes 41 / 48 (results/README.md)", () => {
   assert.deepEqual(misses("2026-11-05.json"), ["I3", "I6", "I9", "R6", "R8", "B8", "N1"]);
 });
