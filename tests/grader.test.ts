@@ -58,6 +58,10 @@ test("2026-11-11 over HTTP (after 683 and 684, publication 2026-11-10.2): 50 / 5
   assert.deepEqual(misses("2026-11-11-http.json"), ["H4", "I3", "I6"]);
 });
 
+test("2026-11-11 over HTTP with the second range live (TICKET-682): 51 / 57, misses H4 H7 I3 I6 B1 B8; S1 to S4 pass", () => {
+  assert.deepEqual(misses("2026-11-11-http-second-range.json"), ["H4", "H7", "I3", "I6", "B1", "B8"]);
+});
+
 test("2026-11-05 (TICKET-657, older rules): recorded 35 / 48; the current grader passes 41 / 48 (results/README.md)", () => {
   assert.deepEqual(misses("2026-11-05.json"), ["I3", "I6", "I9", "R6", "R8", "B8", "N1"]);
 });
