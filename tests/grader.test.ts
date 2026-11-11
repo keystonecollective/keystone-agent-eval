@@ -54,6 +54,10 @@ test("2026-11-10 over HTTP (TICKET-677, eight tools): 49 / 53, misses H4 H7 I3 B
   assert.deepEqual(misses("2026-11-10-http.json"), ["H4", "H7", "I3", "B8"]);
 });
 
+test("2026-11-11 over HTTP (after 683 and 684, publication 2026-11-10.2): 50 / 53, misses H4 I3 I6", () => {
+  assert.deepEqual(misses("2026-11-11-http.json"), ["H4", "I3", "I6"]);
+});
+
 test("2026-11-05 (TICKET-657, older rules): recorded 35 / 48; the current grader passes 41 / 48 (results/README.md)", () => {
   assert.deepEqual(misses("2026-11-05.json"), ["I3", "I6", "I9", "R6", "R8", "B8", "N1"]);
 });
