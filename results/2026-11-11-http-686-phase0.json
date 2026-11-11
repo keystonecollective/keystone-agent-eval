@@ -1,0 +1,1329 @@
+{
+  "run": "2026-11-11-http-686-phase0",
+  "label": "Site main ec3c565 (#90: recreation room area and stories, the server-supplied not-held sentence, the server rules on a kept answer; #91: address search, no map promised where none is drawn) on a laptop, run over HTTP from this repo; tools on the live publication 2026-11-11.1",
+  "model": "(the endpoint's model)",
+  "questions": 57,
+  "grader_version": "current",
+  "concurrency": 3,
+  "timed_from": "this machine",
+  "rows": [
+    {
+      "id": "H1",
+      "parcel": "tholozan",
+      "called": [
+        "get_range"
+      ],
+      "answer": "I can't give you a range for this one. It's a four-family, and the nearby sales on file are all single-family homes, so they wouldn't be a fair comparison. Unusual buildings like yours aren't necessarily a bad thing, but they need a different kind of comparison.",
+      "fallback": "widened",
+      "chip": "range_banner",
+      "sources": [
+        {
+          "label": "Recorded sales (pub.sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 4919,
+      "first_token_ms": 5788,
+      "ms": 6579,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H2",
+      "parcel": "miami",
+      "called": [
+        "get_range"
+      ],
+      "answer": "The range is $253,000 to $311,000, with a middle of $283,000 (about $172 per sq ft). It comes from 12 sales within half a mile, and those sales are mixed. Several were much smaller homes, around 870 to 1,100 sq ft, that sold for $165,000 to $210,000. One 1,512 sq ft home sold for only $101,000, and that pulls the low end down. Your home is 1,648 sq ft, and the closest-sized sales ($265,000, $293,000 and $380,000) sit higher.",
+      "fallback": "none",
+      "chip": "range_banner",
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 5114,
+      "first_token_ms": 5835,
+      "ms": 7406,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H3",
+      "parcel": "lasalle",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "Within half a mile, 23 sales were recorded from April 2025 to March 2026, with a median of $213,774. The closest are 910 Rutger St at $298,900 (July 2025), 913 Morrison Ave at $570,000 (Dec 2025), and 1038 Julia St at $183,500 (Aug 2025). Several of the others are condo units, which pull the median down. I added the sales map below so you can see where they are.",
+      "fallback": "none",
+      "chip": "sales_map",
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 3319,
+      "first_token_ms": 4103,
+      "ms": 5712,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H4",
+      "parcel": "kirkwood",
+      "called": [
+        "get_record",
+        "sales_by_area"
+      ],
+      "answer": "Nothing sold on Magnolia Ave in the last 12 months in the record, so I don't have a sale down your street to compare against. Your parcel is also listed as Vacant/Agriculture (a 3,485 sq ft lot with no building details on file), and its own newest sale was $125,000 on 2026-06-18, recorded as \"Additional parcels.\"",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1485,
+      "first_token_ms": 2301,
+      "ms": 3301,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H5",
+      "parcel": "tholozan",
+      "called": [
+        "get_record"
+      ],
+      "answer": "The record I have is for 4251 Tholozan Ave, 63116, in Tower Grove South. It's a four-family building from 1961 with 3,328 sq ft. I can't see which house the photo shows, so if the address doesn't match yours, tell me the right one and I'll look it up. I put the property card below so you can check the details.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1033,
+      "first_token_ms": 1913,
+      "ms": 2966,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H6",
+      "parcel": "miami",
+      "called": [
+        "tax_bills"
+      ],
+      "answer": "Yes, it went up a lot. The 2025 bill is $3,220, compared with $1,440.98 for 2024. The billed total value also jumped, from $16,880 to $38,990, and nearly all of that is the improvement value ($15,280 to $37,390). The bills show amounts billed only, not why the value changed or whether anything was paid. I added the tax bills below.",
+      "fallback": "none",
+      "chip": "tax_bills",
+      "sources": [
+        {
+          "label": "Billed tax (stl-city-billed-history-611)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-10-14",
+      "degraded": false,
+      "tools_ms": 1125,
+      "first_token_ms": 1928,
+      "ms": 2880,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H7",
+      "parcel": "lasalle",
+      "called": [
+        "assessments",
+        "get_range"
+      ],
+      "answer": "The Assessor has the total assessed at $75,090 (land $7,640, improvement $67,450). That's a tax assessment, not a sale price. The Assessor's cost-based appraisal of the building alone is $355,027, and the land is appraised at $40,200. The sales range runs $385,000 to $734,000, with a middle of $570,000. It comes from 11 sales within a mile, so it's a wide search, and those sales vary a lot in size and price. The Keystone estimate is $375,000 to $715,000, with a middle of $555,000. It's made from nearby recorded sales blended with the Assessor's appraised value. I added the Keystone estimate below so you can see it next to the range.",
+      "fallback": "widened",
+      "chip": "blend_range",
+      "sources": [
+        {
+          "label": "Assessor's file (stl-city-assessments-611)",
+          "data_as_of": "2026-10-14"
+        },
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        },
+        {
+          "label": "City Assessor's appraised value (City of St. Louis)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1764,
+      "first_token_ms": 2484,
+      "ms": 11778,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H8",
+      "parcel": "kirkwood",
+      "called": [
+        "get_range"
+      ],
+      "answer": "Whether to sell is your call. I can only give you what's in the record. This parcel is on file as a vacant lot, so there's no sales range for it. The nearby sales on file are single-family homes, and they wouldn't be a fair comparison.",
+      "fallback": "none",
+      "chip": "range_banner",
+      "sources": [
+        {
+          "label": "Recorded sales (pub.sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1662,
+      "first_token_ms": 2412,
+      "ms": 3143,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H9",
+      "parcel": "tholozan",
+      "called": [],
+      "answer": "That's coming. A repair list and rehab cost estimate are part of the toolkit that isn't live yet, and whether to sell is your call.",
+      "fallback": "coming",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 653,
+      "ms": 1118,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "H10",
+      "parcel": "miami",
+      "called": [],
+      "answer": "That's not something I have: who's buying isn't in the public record I read.",
+      "fallback": "not_held",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 895,
+      "ms": 1236,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I1",
+      "parcel": "lasalle",
+      "called": [
+        "get_range"
+      ],
+      "answer": "The sales range runs $385,000 to $734,000, with a middle of $570,000. It's a wide spread because fewer than five sales fit within half a mile, so the search went out to a mile (11 sales). The tool gave no $/sq ft figure for this one, and the nearby sales run from small places to ones over 3,000 sq ft. The Keystone estimate is a separate range of $375,000 to $715,000, with a middle of $555,000. It's made from nearby recorded sales blended with the City Assessor's appraised value.",
+      "fallback": "widened",
+      "chip": "range_banner",
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        },
+        {
+          "label": "City Assessor's appraised value (City of St. Louis)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1721,
+      "first_token_ms": 2449,
+      "ms": 3910,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I2",
+      "parcel": "kirkwood",
+      "called": [
+        "get_record"
+      ],
+      "answer": "It last sold on 2026-06-18 for $125,000. The record labels that sale \"Additional parcels,\" so it may have been part of a larger multi-parcel deal. This parcel is listed as Vacant/Agriculture.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 931,
+      "first_token_ms": 2103,
+      "ms": 2687,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I3",
+      "parcel": "tholozan",
+      "called": [],
+      "answer": "That's not something I have: who owns the property and how long they've held it isn't in the public record I read. The only thing I can see is a recorded sale in the last two years, if there is one.",
+      "fallback": "not_held",
+      "chip": "owner_lock",
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 817,
+      "ms": 1301,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I4",
+      "parcel": "miami",
+      "called": [],
+      "answer": "That's not something I have: who owns it, or whether it's absentee or owner-occupied, isn't in the public record I read.",
+      "fallback": "not_held",
+      "chip": "owner_lock",
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 748,
+      "ms": 1084,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I5",
+      "parcel": "lasalle",
+      "called": [],
+      "answer": "That's not something I have: vacancy, probate and foreclosure status aren't in the public record I read.",
+      "fallback": "not_held",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 885,
+      "ms": 1152,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I6",
+      "parcel": "kirkwood",
+      "called": [
+        "tax_bills"
+      ],
+      "answer": "That's not something I have: whether taxes are paid or behind isn't in the record I read, and there are no billed tax amounts on file for this parcel either.",
+      "fallback": "not_held",
+      "chip": "tax_bills",
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1807,
+      "first_token_ms": 2548,
+      "ms": 2992,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I7",
+      "parcel": "tholozan",
+      "called": [
+        "get_record"
+      ],
+      "answer": "It's a four-family. The City record lists it as a \"Four Family Unit,\" built in 1961 with 3,328 living sq ft on 2 stories. It's already on your screen in the property card.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1038,
+      "first_token_ms": 1832,
+      "ms": 2400,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I8",
+      "parcel": "miami",
+      "called": [
+        "permits"
+      ],
+      "answer": "There are 3 permits on file since 2009, and all are completed. In 2021 there were two Alteration permits for a 1 or 2 Family structure, with estimates of $6,250 and $9,150. Both were completed on 2021-09-29. In 2023 there was an Alteration permit for a Fence, estimated at $6,500 and completed on 2023-03-29. The record doesn't describe the work, so I can't say whether that adds up to a full rehab. The permits block is already below the property card.",
+      "fallback": "none",
+      "chip": "permits",
+      "sources": [
+        {
+          "label": "City building permits (stl-city-building-permits)",
+          "data_as_of": "2026-11-06"
+        }
+      ],
+      "data_as_of": "2026-11-06",
+      "degraded": false,
+      "tools_ms": 934,
+      "first_token_ms": 1809,
+      "ms": 5766,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I9",
+      "parcel": "lasalle",
+      "called": [],
+      "answer": "That's not something I have: who's buying isn't in the public record I read, so I can't say who the buyers are.",
+      "fallback": "not_held",
+      "chip": "buyers_sample",
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 689,
+      "ms": 1163,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "I10",
+      "parcel": "kirkwood",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "Nothing sold on Magnolia Ave in the last 12 months. The sales record shows zero street sales from July 2025 to June 2026, so I have no prices to give you. The record also doesn't say which sales were flips.",
+      "fallback": "none",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1281,
+      "first_token_ms": 2326,
+      "ms": 3686,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R1",
+      "parcel": "tholozan",
+      "called": [
+        "get_record"
+      ],
+      "answer": "The record has this as a Four Family Unit built in 1961, with 3,328 living sq ft. Beds and baths aren't on file. City parcels don't carry bath counts, and no bedroom count is listed for this one.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 870,
+      "first_token_ms": 1542,
+      "ms": 2207,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R2",
+      "parcel": "miami",
+      "called": [
+        "assessments"
+      ],
+      "answer": "Here's what the Assessor has on file. Appraised land is $8,400 and the cost-appraised improvement is $196,782. Assessed, it comes to $38,990 total, with $1,600 on the land and $37,390 on the improvement.",
+      "fallback": "none",
+      "chip": "assessor_view",
+      "sources": [
+        {
+          "label": "Assessor's file (stl-city-assessments-611)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-10-14",
+      "degraded": false,
+      "tools_ms": 1145,
+      "first_token_ms": 1823,
+      "ms": 2568,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R3",
+      "parcel": "lasalle",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "Nothing sold on Pardee Ln in the window I checked. That window runs April 2025 through June 2026, and the record shows zero recorded sales for that street. The sales map is already on your screen.",
+      "fallback": "none",
+      "chip": "sales_map",
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1208,
+      "first_token_ms": 1985,
+      "ms": 3204,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R4",
+      "parcel": "kirkwood",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "Within a half mile of 452 Magnolia, there were 52 recorded sales from July 2025 through June 2026, with a median price of $369,500. County parcels don't have a neighborhood view, so this is a radius search.",
+      "fallback": "none",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Recorded sales (stlco-assessor-real-estate-extract)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 2162,
+      "first_token_ms": 681,
+      "ms": 4016,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R5",
+      "parcel": "tholozan",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "The median sale price within half a mile is $217,824, based on 76 recorded sales from April 2025 through March 2026. The 10 nearest sales run from $165,000 to $420,000. The $420,000 one is this house, which sold in June 2025.",
+      "fallback": "none",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 2102,
+      "first_token_ms": 2757,
+      "ms": 3823,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R6",
+      "parcel": "miami",
+      "called": [
+        "tax_bills"
+      ],
+      "answer": "I can only see this parcel's own bills, not the neighbors', so I can't say how it compares. The 2025 bill is $3,220 on a $38,990 billed value. That's up from $1,440.98 in 2024, when the billed value was $16,880. The tax bills block is already on screen if you want to look through the full history.",
+      "fallback": "none",
+      "chip": "tax_bills",
+      "sources": [
+        {
+          "label": "Billed tax (stl-city-billed-history-611)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-10-14",
+      "degraded": false,
+      "tools_ms": 1819,
+      "first_token_ms": 2468,
+      "ms": 3380,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R7",
+      "parcel": "lasalle",
+      "called": [
+        "get_record"
+      ],
+      "answer": "It's in St. Louis Public Schools, per the City record for 1401 S 10th St in LaSalle Park. I can't speak to school ratings, because those aren't in the record I read.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1028,
+      "first_token_ms": 1640,
+      "ms": 2187,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R8",
+      "parcel": "kirkwood",
+      "called": [
+        "get_record"
+      ],
+      "answer": "Yes, there's a recorded sale. It was on 2026-06-18 for $125,000, and the record tags it as \"Additional parcels.\" The Assessor lists this parcel as Vacant/Agriculture. I can't see listing status, so I can't tell you what the sign means.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 888,
+      "first_token_ms": 1644,
+      "ms": 2403,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R9",
+      "parcel": "tholozan",
+      "called": [],
+      "answer": "That's not something I have: listing status, days on market and listing history aren't in the public record I read. I can tell you about recorded sales, though, so ask if you want the last sale or what's sold nearby.",
+      "fallback": "not_held",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 701,
+      "ms": 1321,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "R10",
+      "parcel": "miami",
+      "called": [],
+      "answer": "That's coming — a report or CMA is part of the toolkit that isn't ready yet. For now, the range and sales map on screen come from recorded sales, and they aren't an appraisal.",
+      "fallback": "coming",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 741,
+      "ms": 1900,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B1",
+      "parcel": "lasalle",
+      "called": [
+        "get_range"
+      ],
+      "answer": "I don't have the asking price, so I can't say if it's fair, and what to offer is your call. For comparison, 11 nearby sales (the search widened to a mile) give a wide range of $385,000 to $734,000, with a middle of $570,000. The Keystone estimate, which blends recorded sales with the Assessor's appraised value, runs $375,000 to $715,000, with a middle of $555,000. The comps vary a lot, from a $206,000 sale to an $857,000 sale, which is why the range is so wide.",
+      "fallback": "widened",
+      "chip": "range_banner",
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        },
+        {
+          "label": "City Assessor's appraised value (City of St. Louis)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1445,
+      "first_token_ms": 2066,
+      "ms": 3309,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B2",
+      "parcel": "kirkwood",
+      "called": [
+        "get_record"
+      ],
+      "answer": "The newest recorded sale is from 2026-06-18 at $125,000, but the County files it as \"Additional parcels.\" That means it may be part of a multi-parcel deal, so I wouldn't read $125,000 as the price for this lot alone. The County lists this parcel as Vacant/Agriculture. I can't tell from the record whether that seller was the one who bought it earlier, because ownership isn't in the public record I read.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 902,
+      "first_token_ms": 1518,
+      "ms": 2813,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B3",
+      "parcel": "tholozan",
+      "called": [
+        "tax_bills"
+      ],
+      "answer": "I can't say what the taxes will be, but the newest bill on file is 2025 at $4,753.35, up from $3,955.58 in 2024. That 2025 bill is on a billed total value of $57,720, and the 2024 bill was on $46,920. I added the tax bills below.",
+      "fallback": "none",
+      "chip": "tax_bills",
+      "sources": [
+        {
+          "label": "Billed tax (stl-city-billed-history-611)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-10-14",
+      "degraded": false,
+      "tools_ms": 980,
+      "first_token_ms": 1577,
+      "ms": 2304,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B4",
+      "parcel": "miami",
+      "called": [
+        "get_record"
+      ],
+      "answer": "It was built in 1894 and has 1,648 sq ft of living area over 2 stories. The building record lists 1,568 sq ft, so the two figures differ. Basement isn't on file for City parcels, and the record shows no garage. I added the property card below.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 913,
+      "first_token_ms": 1655,
+      "ms": 2500,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B5",
+      "parcel": "lasalle",
+      "called": [
+        "get_range"
+      ],
+      "answer": "Yes, several nearby sales came in lower than the 11 that make up the range, which is $385,000 to $734,000. Because fewer than five sold within half a mile, the search went out to a mile. - $206,000 for 864 sq ft (0.5 mi, Oct 2025) - $235,000 for 1,402 sq ft (0.54 mi, Jul 2025) - $345,000 for 1,696 sq ft (0.54 mi, Jul 2025) - $425,000 for 2,820 sq ft (0.55 mi, Aug 2025) - $476,000 for 2,757 sq ft (0.7 mi, Jun 2025) Most of the cheaper ones are smaller homes. I added the sales map below so you can see where they sit.",
+      "fallback": "widened",
+      "chip": "sales_map",
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1381,
+      "first_token_ms": 2132,
+      "ms": 3938,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B6",
+      "parcel": "kirkwood",
+      "called": [
+        "get_record"
+      ],
+      "answer": "It's in the County. The record puts it in the Kirkwood neighborhood and school district, and it's listed as a Vacant/Agriculture parcel.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 964,
+      "first_token_ms": 1689,
+      "ms": 2218,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B7",
+      "parcel": "tholozan",
+      "called": [
+        "get_record"
+      ],
+      "answer": "Yes, the City has certificates on file for this four-family. There are 13 in total. The newest are unit C on 2025-05-08, units D, B and A on 2025-04-25, and unit B again on 2018-08-21. The record doesn't say whether they're occupancy or inspection certificates, and it doesn't show the other 8. I can show the property card if you want to see the rest.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 961,
+      "first_token_ms": 1537,
+      "ms": 2638,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B8",
+      "parcel": "miami",
+      "called": [
+        "get_record"
+      ],
+      "answer": "The City's record lists 4273 Miami St as \"Single Family Units,\" so nothing on file shows it as a two-family. Whether it's legal as a two-family, or whether you can rent it, isn't in what I read. There are two certificates on file, issued 2022-08-25 and 2018-07-30, but the record doesn't say what they cover. The City would need to confirm the legal use.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 2653,
+      "first_token_ms": 3307,
+      "ms": 4335,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "B9",
+      "parcel": "lasalle",
+      "called": [
+        "flood_zone"
+      ],
+      "answer": "It's outside the mapped high-risk flood area (Zone X, minimal flood hazard) on FEMA's map. That's the map, not a flood determination. Crime and school ratings aren't something I have in the record. I added the flood zone block below.",
+      "fallback": "none",
+      "chip": "flood_zone",
+      "sources": [
+        {
+          "label": "FEMA flood map (fema-nfhl)",
+          "data_as_of": "2016-03-15"
+        }
+      ],
+      "data_as_of": "2016-03-15",
+      "degraded": false,
+      "tools_ms": 1153,
+      "first_token_ms": 1866,
+      "ms": 2551,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N1",
+      "parcel": "kirkwood",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "Within half a mile of you, 52 homes sold between July 2025 and June 2026, and the median price was $369,500. The closest sales are mostly small, with several Nirk Ave units at $165K–$191K. The nearest sale was 435 Heman Dr at $197,000, and 443 Erber Dr sold for $250,000 in March 2026.",
+      "fallback": "none",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Recorded sales (stlco-assessor-real-estate-extract)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1539,
+      "first_token_ms": 2140,
+      "ms": 3784,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N2",
+      "parcel": "tholozan",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "1 mile away. It sold for $165,000 on 2025-12-16. I can't tell which house is \"next door\" from the record.",
+      "fallback": "none",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1749,
+      "first_token_ms": 2428,
+      "ms": 3860,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N3",
+      "parcel": "miami",
+      "called": [],
+      "answer": "That's not something I have: who owns it or lives there isn't in the public record I read.",
+      "fallback": "not_held",
+      "chip": "owner_lock",
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 741,
+      "ms": 1092,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N4",
+      "parcel": "lasalle",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "Honestly, there's no clear trend to read on S 10th St. Seven sales in the last two years, with a median of $278,000, range from $112,500 condo units near you to $575,000–$620,000 for houses farther south. That mix of property types is why the prices jump around so much. One 2026 sale, 2408 S 10th St, has no price on file. I put the sales on the map below.",
+      "fallback": "none",
+      "chip": "sales_map",
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1223,
+      "first_token_ms": 1906,
+      "ms": 3895,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N5",
+      "parcel": "kirkwood",
+      "called": [
+        "get_record"
+      ],
+      "answer": "It's in Kirkwood, in St. Louis County, and the Kirkwood school district covers it. The County lists it as Vacant/Agriculture, not a house.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 960,
+      "first_token_ms": 1623,
+      "ms": 2195,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N6",
+      "parcel": "tholozan",
+      "called": [
+        "sales_by_area"
+      ],
+      "answer": "About 76 houses sold within half a mile of here, with a median price of $217,824. That covers the 12-month window from April 2025 through March 2026, which is the stretch the record covers, not strictly this calendar year.",
+      "fallback": "none",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1861,
+      "first_token_ms": 2654,
+      "ms": 3888,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N7",
+      "parcel": "miami",
+      "called": [
+        "tax_bills",
+        "assessments"
+      ],
+      "answer": "I only have records for your parcel, so I can't see your neighbor's bill. Yours jumped in 2025 to $3,220, up from $1,440.98 in 2024. The billed value went from $16,880 to $38,990 over the same period, and a difference like that could explain a gap if your neighbor's value didn't change as much. If you give me the neighbor's address, I can look up their bill. I added the tax bills and the Assessor's view below.",
+      "fallback": "none",
+      "chip": "tax_bills",
+      "sources": [
+        {
+          "label": "Billed tax (stl-city-billed-history-611)",
+          "data_as_of": "2026-10-14"
+        },
+        {
+          "label": "Assessor's file (stl-city-assessments-611)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-10-14",
+      "degraded": false,
+      "tools_ms": 3354,
+      "first_token_ms": 4019,
+      "ms": 5487,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N8",
+      "parcel": "lasalle",
+      "called": [],
+      "answer": "That's not something I have: famous residents aren't in the public record I read.",
+      "fallback": "not_held",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 668,
+      "ms": 901,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "N9",
+      "parcel": "kirkwood",
+      "called": [
+        "get_record"
+      ],
+      "answer": "Not a 4-family. The County record lists 452 Magnolia Ave as Vacant/Agriculture, with no year built, beds, baths or square footage on file. It's a small Kirkwood lot with a recorded sale of $125,000 on 2026-06-18, tagged \"Additional parcels.\" That tag usually means it sold along with other parcels, but the record doesn't say. I put the property card below.",
+      "fallback": "none",
+      "chip": "property_card",
+      "sources": [
+        {
+          "label": "Property record (pub.properties)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1134,
+      "first_token_ms": 1813,
+      "ms": 2919,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "L1",
+      "parcel": "miami",
+      "called": [],
+      "answer": "That's not something I have: who owns it isn't in the public record I read.",
+      "fallback": "not_held",
+      "chip": "owner_lock",
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 770,
+      "ms": 1070,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "P1",
+      "parcel": "miami",
+      "called": [
+        "permits"
+      ],
+      "answer": "Three permits on file since 2009, and all three are completed. In 2021 there were two Alteration permits for a 1 or 2 Family structure, estimated at $6,250 and $9,150. In 2023 there was a Fence alteration permit, estimated at $6,500. The record doesn't say what work was done. I added the permits block below.",
+      "fallback": "none",
+      "chip": "permits",
+      "sources": [
+        {
+          "label": "City building permits (stl-city-building-permits)",
+          "data_as_of": "2026-11-06"
+        }
+      ],
+      "data_as_of": "2026-11-06",
+      "degraded": false,
+      "tools_ms": 988,
+      "first_token_ms": 1786,
+      "ms": 2693,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "P2",
+      "parcel": "lasalle",
+      "called": [
+        "permits"
+      ],
+      "answer": "The most recent permit is a building permit for a fence (an alteration). It was applied for on May 3, 2021, issued May 6, 2021, with a $4,000 estimate, and it has no completion on file. The parcel has 11 permits since 2009 in all, and the permits block on screen has the rest.",
+      "fallback": "none",
+      "chip": "permits",
+      "sources": [
+        {
+          "label": "City building permits (stl-city-building-permits, stl-city-trade-permits)",
+          "data_as_of": "2026-11-06"
+        }
+      ],
+      "data_as_of": "2026-11-06",
+      "degraded": false,
+      "tools_ms": 1012,
+      "first_token_ms": 1619,
+      "ms": 2535,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "F1",
+      "parcel": "miami",
+      "called": [
+        "flood_zone"
+      ],
+      "answer": "FEMA's map puts 4273 Miami St in Zone X, an area of minimal flood hazard. That's outside the mapped high-risk flood area, and 0% of the lot touches it. This is just FEMA's map, not a flood determination. I added the flood zone block below.",
+      "fallback": "none",
+      "chip": "flood_zone",
+      "sources": [
+        {
+          "label": "FEMA flood map (fema-nfhl)",
+          "data_as_of": "2016-03-15"
+        }
+      ],
+      "data_as_of": "2016-03-15",
+      "degraded": false,
+      "tools_ms": 952,
+      "first_token_ms": 1709,
+      "ms": 2414,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "F2",
+      "parcel": "tesson",
+      "called": [
+        "flood_zone"
+      ],
+      "answer": "About 53% of this lot is in a high-risk flood area, FEMA Zone AE. That comes from FEMA's map and isn't a flood determination. I added the flood zone block below.",
+      "fallback": "none",
+      "chip": "flood_zone",
+      "sources": [
+        {
+          "label": "FEMA flood map (fema-nfhl)",
+          "data_as_of": "2016-03-15"
+        }
+      ],
+      "data_as_of": "2016-03-15",
+      "degraded": false,
+      "tools_ms": 833,
+      "first_token_ms": 1415,
+      "ms": 1939,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "S1",
+      "parcel": "miami",
+      "called": [
+        "get_range"
+      ],
+      "answer": "There are two numbers because they're built differently. The sales range is $253,000 to $311,000 (mid $283,000), from 12 recorded sales within half a mile. The Keystone estimate is $251,000 to $308,000 (middle $281,000), made from those nearby recorded sales blended with the City Assessor's appraised value. I added the blend range below so you can see both side by side.",
+      "fallback": "none",
+      "chip": "blend_range",
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        },
+        {
+          "label": "City Assessor's appraised value (City of St. Louis)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1570,
+      "first_token_ms": 2277,
+      "ms": 3234,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "S2",
+      "parcel": "tesson",
+      "called": [],
+      "answer": "That's not something I have: the range lookup came back with nothing for this property, so I don't have a Keystone estimate or a sales range to give you for 4668 Tesson St.",
+      "fallback": "none",
+      "chip": null,
+      "sources": [
+        {
+          "label": "Keystone public-record publication",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": null,
+      "first_token_ms": 1410,
+      "ms": 1952,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "S3",
+      "parcel": "lasalle",
+      "called": [
+        "get_range"
+      ],
+      "answer": "The Keystone estimate runs $375,000 to $715,000, with a middle of $555,000. It blends recent nearby sales with the City Assessor's appraised value. The sales range is $385,000 to $734,000, with a middle of $570,000. That one is widened: fewer than five comparable sales fell within half a mile, so it reaches out to a mile and uses 11 sales. I'm showing both side by side and not picking one.",
+      "fallback": "widened",
+      "chip": "blend_range",
+      "sources": [
+        {
+          "label": "Recorded sales (stl-city-assessor-property-sales)",
+          "data_as_of": "2026-11-11"
+        },
+        {
+          "label": "City Assessor's appraised value (City of St. Louis)",
+          "data_as_of": "2026-10-14"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1414,
+      "first_token_ms": 2039,
+      "ms": 3182,
+      "tokens": null,
+      "usd": null
+    },
+    {
+      "id": "S4",
+      "parcel": "kirkwood",
+      "called": [
+        "get_range"
+      ],
+      "answer": "No, there's no Keystone estimate for this one, and there's no sales range either. The record has it as a vacant lot, and the nearby sales on file are all single-family homes, so they don't compare.",
+      "fallback": "none",
+      "chip": "range_banner",
+      "sources": [
+        {
+          "label": "Recorded sales (pub.sales)",
+          "data_as_of": "2026-11-11"
+        }
+      ],
+      "data_as_of": "2026-11-11",
+      "degraded": false,
+      "tools_ms": 1151,
+      "first_token_ms": 2011,
+      "ms": 2598,
+      "tokens": null,
+      "usd": null
+    }
+  ]
+}

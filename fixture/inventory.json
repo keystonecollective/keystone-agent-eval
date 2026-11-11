@@ -931,7 +931,7 @@
       "never": [
         "\\baccura\\w*",
         "\\b\\d{1,3}(\\.\\d+)?\\s?(%|percent)",
-        "(?<!not )(?<!n't )\\ban appraisal\\b",
+        "(?<!not )(?<!n't )(?<!neither is )(?<!neither one is )(?<!neither of them is )(?<!nor )\\ban appraisal\\b",
         "\\b(average|split the difference|midpoint) (of|between) the two",
         "\\bthe (better|more accurate|right|true) (number|range|one)\\b"
       ]
@@ -955,7 +955,7 @@
       "never": [
         "\\baccura\\w*",
         "\\b\\d{1,3}(\\.\\d+)?\\s?(%|percent)",
-        "(?<!not )(?<!n't )\\ban appraisal\\b",
+        "(?<!not )(?<!n't )(?<!neither is )(?<!neither one is )(?<!neither of them is )(?<!nor )\\ban appraisal\\b",
         "\\b(average|split the difference|midpoint) (of|between) the two",
         "\\bthe (better|more accurate|right|true) (number|range|one)\\b"
       ]
@@ -980,7 +980,7 @@
       "never": [
         "\\baccura\\w*",
         "\\b\\d{1,3}(\\.\\d+)?\\s?(%|percent)",
-        "(?<!not )(?<!n't )\\ban appraisal\\b",
+        "(?<!not )(?<!n't )(?<!neither is )(?<!neither one is )(?<!neither of them is )(?<!nor )\\ban appraisal\\b",
         "\\b(average|split the difference|midpoint) (of|between) the two",
         "\\bthe (better|more accurate|right|true) (number|range|one)\\b"
       ]
@@ -1004,7 +1004,7 @@
       "never": [
         "\\baccura\\w*",
         "\\b\\d{1,3}(\\.\\d+)?\\s?(%|percent)",
-        "(?<!not )(?<!n't )\\ban appraisal\\b",
+        "(?<!not )(?<!n't )(?<!neither is )(?<!neither one is )(?<!neither of them is )(?<!nor )\\ban appraisal\\b",
         "\\b(average|split the difference|midpoint) (of|between) the two",
         "\\bthe (better|more accurate|right|true) (number|range|one)\\b",
         "\\b(keystone estimate|second (number|range)) (is|of|comes? (in|out) at|runs?)\\b[^.]*\\$\\d"
