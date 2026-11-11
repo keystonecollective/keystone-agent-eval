@@ -1,5 +1,5 @@
 {
-  "_about": "The Arc 1 question inventory as an eval fixture (TICKET-650 inventory, TICKET-657; grader rules TICKET-665). 48 questions as people say them, each with the pub data family it belongs to (inventory section 1; \"none\" = not held), the tool(s) expected, and the fallback(s) accepted. `tools` is the inventory's own answer; `alt_tools` lists other sets that answer the same question. A question passes on tools when every tool of one accepted set was called: calling one more is not a failure. A question whose set is empty must call none, unless an `alt_tools` set says which are fine. Fallback \"range\" is per parcel, from the record: \"widened\" when get_range for that parcel went out to a mile or has no range (a four-family, vacant land, too few sales), else \"none\"; an answer that called get_range on such a parcel may say \"widened\" whatever the question. `parcels.<key>.range` states what each parcel's range is expected to be (ok, widened, class_mismatch, class_unknown, too_few_sales); the live record decides, and the eval prints any difference. `parcel` is the property on screen when the question is asked. `cases` are questions outside the 48, added by later tickets and scored the same way, plus `chip` (the block the answer's chip must point at) and `never` (patterns the sentence must not match). L1 (TICKET-660, decision 112): asked from Homeowner, where the lock is not on screen; the answer is the not-held line with a chip to the lock, no tool, and no claim to know or be able to find who owns it. Synthetic text; public addresses only. `parcels.<key>.address` is the parcel's public site address, what the page shows as the subject when a question is asked (added for this public harness; the app looks it up in its directory). TICKET-677 adds four cases on the two fact families published 2026-11-10: P1 and P2 (City permits, tool `permits`, block `permits`) and F1 and F2 (FEMA flood map zone, tool `flood_zone`, block `flood_zone`; F2's parcel has part of its lot in a Special Flood Hazard Area). The same ticket lets I8 (permits) and B9 (flood zone) pass either way: a not-held answer with no tool, as the runs before 2026-11-10 gave when neither family was published, or an answer from the new tool.",
+  "_about": "The Arc 1 question inventory as an eval fixture (TICKET-650 inventory, TICKET-657; grader rules TICKET-665). 48 questions as people say them, each with the pub data family it belongs to (inventory section 1; \"none\" = not held), the tool(s) expected, and the fallback(s) accepted. `tools` is the inventory's own answer; `alt_tools` lists other sets that answer the same question. A question passes on tools when every tool of one accepted set was called: calling one more is not a failure. A question whose set is empty must call none, unless an `alt_tools` set says which are fine. Fallback \"range\" is per parcel, from the record: \"widened\" when get_range for that parcel went out to a mile or has no range (a four-family, vacant land, too few sales), else \"none\"; an answer that called get_range on such a parcel may say \"widened\" whatever the question. `parcels.<key>.range` states what each parcel's range is expected to be (ok, widened, class_mismatch, class_unknown, too_few_sales); the live record decides, and the eval prints any difference. `parcel` is the property on screen when the question is asked. `cases` are questions outside the 48, added by later tickets and scored the same way, plus `chip` (the block the answer's chip must point at) and `never` (patterns the sentence must not match). L1 (TICKET-660, decision 112): asked from Homeowner, where the lock is not on screen; the answer is the not-held line with a chip to the lock, no tool, and no claim to know or be able to find who owns it. Synthetic text; public addresses only. `parcels.<key>.address` is the parcel's public site address, what the page shows as the subject when a question is asked (added for this public harness; the app looks it up in its directory). TICKET-677 adds four cases on the two fact families published 2026-11-10: P1 and P2 (City permits, tool `permits`, block `permits`) and F1 and F2 (FEMA flood map zone, tool `flood_zone`, block `flood_zone`; F2's parcel has part of its lot in a Special Flood Hazard Area). The same ticket lets I8 (permits) and B9 (flood zone) pass either way: a not-held answer with no tool, as the runs before 2026-11-10 gave when neither family was published, or an answer from the new tool. TICKET-682 adds four cases on the second range (a second, separately labelled range that blends recorded sales with the Assessor's appraised value; it rides `get_range` as `second_range`, block `blend_range`), all on parcels this fixture already names (decision 218f: no new address): S1 and S2 (City, second range shown) and S3 (City, shown beside a widened sales range) must point at `blend_range`; S4's parcel has no sales range, so there is no second range and the answer must not state one. All four share `never`: no accuracy claim or percentage, never called an appraisal, never averaged with the sales range, and neither range named the better one. Not covered, because no parcel named here is in that state: a County house with the second range shown, and the two withheld states (the blended middle under $120,000; the appraised value far under the sales middle). The cases hold only once the constants are published (2026-11-11) and are not scored against any earlier run.",
   "parcels": {
     "tholozan": {
       "id": "stl-41169225000",
@@ -911,6 +911,104 @@
       ],
       "parcel": "tesson",
       "chip": "flood_zone"
+    },
+    {
+      "id": "S1",
+      "pov": "homeowner",
+      "question": "Why are there two numbers for my house?",
+      "family": [
+        "C",
+        "F"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "miami",
+      "chip": "blend_range",
+      "never": [
+        "\\baccura\\w*",
+        "\\b\\d{1,3}(\\.\\d+)?\\s?(%|percent)",
+        "(?<!not )(?<!n't )\\ban appraisal\\b",
+        "\\b(average|split the difference|midpoint) (of|between) the two",
+        "\\bthe (better|more accurate|right|true) (number|range|one)\\b"
+      ]
+    },
+    {
+      "id": "S2",
+      "pov": "investor",
+      "question": "What's the Keystone estimate on this one?",
+      "family": [
+        "C",
+        "F"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "fallback": [
+        "none"
+      ],
+      "parcel": "tesson",
+      "chip": "blend_range",
+      "never": [
+        "\\baccura\\w*",
+        "\\b\\d{1,3}(\\.\\d+)?\\s?(%|percent)",
+        "(?<!not )(?<!n't )\\ban appraisal\\b",
+        "\\b(average|split the difference|midpoint) (of|between) the two",
+        "\\bthe (better|more accurate|right|true) (number|range|one)\\b"
+      ]
+    },
+    {
+      "id": "S3",
+      "pov": "realtor",
+      "question": "What does the Keystone estimate say here, next to the sales range?",
+      "family": [
+        "C",
+        "F"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "fallback": [
+        "widened",
+        "none"
+      ],
+      "parcel": "lasalle",
+      "chip": "blend_range",
+      "never": [
+        "\\baccura\\w*",
+        "\\b\\d{1,3}(\\.\\d+)?\\s?(%|percent)",
+        "(?<!not )(?<!n't )\\ban appraisal\\b",
+        "\\b(average|split the difference|midpoint) (of|between) the two",
+        "\\bthe (better|more accurate|right|true) (number|range|one)\\b"
+      ]
+    },
+    {
+      "id": "S4",
+      "pov": "investor",
+      "question": "Is there a Keystone estimate for this one?",
+      "family": [
+        "C",
+        "F"
+      ],
+      "tools": [
+        "get_range"
+      ],
+      "fallback": [
+        "widened",
+        "none"
+      ],
+      "parcel": "kirkwood",
+      "never": [
+        "\\baccura\\w*",
+        "\\b\\d{1,3}(\\.\\d+)?\\s?(%|percent)",
+        "(?<!not )(?<!n't )\\ban appraisal\\b",
+        "\\b(average|split the difference|midpoint) (of|between) the two",
+        "\\bthe (better|more accurate|right|true) (number|range|one)\\b",
+        "\\b(keystone estimate|second (number|range)) (is|of|comes? (in|out) at|runs?)\\b[^.]*\\$\\d"
+      ]
     }
   ]
 }
