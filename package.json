@@ -8,7 +8,7 @@
   "engines": { "node": ">=22" },
   "scripts": {
     "score": "tsx src/score.ts",
-    "score:all": "tsx src/score.ts --check results/2026-11-05.json results/2026-11-06.json results/2026-11-06-streaming.json results/2026-11-09-http.json results/2026-11-10-http.json results/2026-11-11-http.json results/2026-11-11-http-second-range.json",
+    "score:all": "tsx src/score.ts --check results/2026-11-05.json results/2026-11-06.json results/2026-11-06-streaming.json results/2026-11-09-http.json results/2026-11-10-http.json results/2026-11-11-http.json results/2026-11-11-http-second-range.json results/2026-11-11-http-agent-fix.json",
     "run": "tsx src/run.ts",
     "test": "node --import tsx --test tests/*.test.ts",
     "typecheck": "tsc --noEmit"
